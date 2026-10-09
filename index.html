@@ -1,7 +1,77 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"><title>Тест</title></head>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход на сайт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1e1e2e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box {
+            background: #2a2a3e;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        input {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            width: 220px;
+            margin-bottom: 12px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background: #6c8cff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover { background: #5a7aef; }
+        #error { color: #ff6b6b; margin-top: 10px; min-height: 20px; }
+    </style>
+</head>
 <body>
-<h1>Сайт работает!</h1>
+    <div class="box">
+        <h2>Введите пароль</h2>
+        <input type="password" id="pass" placeholder="Пароль">
+        <br>
+        <button onclick="check()">Войти</button>
+        <div id="error"></div>
+    </div>
+
+    <script>
+        // ← ЗДЕСЬ ваш пароль. Поменяйте на свой.
+        const PASSWORD = "8573";
+
+        function check() {
+            const userInput = document.getElementById("pass").value;
+
+            if (userInput === PASSWORD) {
+                // Запоминаем, что пароль введён правильно
+                sessionStorage.setItem("auth", "yes");
+                // Переходим на секретную страницу
+                window.location.href = "secret.html";
+            } else {
+                document.getElementById("error").textContent = "Неверный пароль";
+            }
+        }
+
+        // Вход по Enter
+        document.getElementById("pass").addEventListener("keydown", e => {
+            if (e.key === "Enter") check();
+        });
+    </script>
 </body>
 </html>
