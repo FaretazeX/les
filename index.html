@@ -59,16 +59,16 @@
             const userInput = document.getElementById("pass").value;
 
             if (userInput === PASSWORD) {
-                // Запоминаем, что пароль введён правильно
+               
                 sessionStorage.setItem("auth", "yes");
-                // Переходим на секретную страницу
+               
                 window.location.href = "secret.html";
             } else {
                 document.getElementById("error").textContent = "Неверный пароль";
             }
         }
 
-        // Вход по Enter
+       
         document.getElementById("pass").addEventListener("keydown", e => {
             if (e.key === "Enter") check();
         });
